@@ -5,6 +5,9 @@
  */
 package View;
 
+import Model.UsuarioDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eric
@@ -30,13 +33,13 @@ public class Landing extends javax.swing.JFrame {
         jbSair = new javax.swing.JButton();
         jlUsuario = new javax.swing.JLabel();
         jlSenha = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextFieldSenha = new javax.swing.JTextField();
+        jTextLogin = new javax.swing.JTextField();
         jbLogin1 = new javax.swing.JButton();
+        jPasswordSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jbSair.setText("Login");
+        jbSair.setText("Sair");
         jbSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSairActionPerformed(evt);
@@ -48,10 +51,10 @@ public class Landing extends javax.swing.JFrame {
         jlSenha.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jlSenha.setText("Senha");
 
-        jTextField1.setToolTipText("");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextLogin.setToolTipText("");
+        jTextLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextLoginActionPerformed(evt);
             }
         });
 
@@ -76,8 +79,8 @@ public class Landing extends javax.swing.JFrame {
                             .addComponent(jlSenha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextFieldSenha)))
+                            .addComponent(jTextLogin)
+                            .addComponent(jPasswordSenha)))
                     .addComponent(jbLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
@@ -87,11 +90,11 @@ public class Landing extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlUsuario)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlSenha)
-                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(105, 105, 105)
                 .addComponent(jbLogin1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -100,7 +103,7 @@ public class Landing extends javax.swing.JFrame {
         );
 
         jbSair.getAccessibleContext().setAccessibleName("Sair");
-        jTextField1.getAccessibleContext().setAccessibleName(" ");
+        jTextLogin.getAccessibleContext().setAccessibleName(" ");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -111,11 +114,19 @@ public class Landing extends javax.swing.JFrame {
 
     private void jbLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLogin1ActionPerformed
         // TODO add your handling code here:
+        UsuarioDAO dao = new UsuarioDAO();
+        
+        if (dao.checkLogin(jTextLogin.getText(), jPasswordSenha.getText())){
+                    new ViewPrincipal().setVisible(true);
+                    this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou Senha incorretos");
+        }
     }//GEN-LAST:event_jbLogin1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,8 +164,8 @@ public class Landing extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextFieldSenha;
+    private javax.swing.JPasswordField jPasswordSenha;
+    private javax.swing.JTextField jTextLogin;
     private javax.swing.JButton jbLogin1;
     private javax.swing.JButton jbSair;
     private javax.swing.JLabel jlSenha;

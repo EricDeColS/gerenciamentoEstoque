@@ -253,10 +253,9 @@ public class ViewProduto extends javax.swing.JFrame {
             Produto prod = new Produto();
             ProdutoDAO pdao = new ProdutoDAO();
         
-            prod.setNome(jTNomeProduto.getText());
-            prod.setQtdProduto(Integer.parseInt(jTqtdProduto.getText()));
+            
             prod.setId((int)jTableProduto.getValueAt(jTableProduto.getSelectedRow(),0));
-            pdao.update(prod);
+            pdao.delete(prod);
         
             jTNomeProduto.setText("");
             jTqtdProduto.setText("");
