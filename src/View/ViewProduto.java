@@ -88,6 +88,16 @@ public class ViewProduto extends javax.swing.JFrame {
         });
 
         jBAtualizarProduto.setText("Atualizar");
+        jBAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAtualizarProdutoActionPerformed(evt);
+            }
+        });
+        jBAtualizarProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBAtualizarProdutoKeyReleased(evt);
+            }
+        });
 
         jBExcluirProduto.setText("Excluir");
         jBExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +190,11 @@ public class ViewProduto extends javax.swing.JFrame {
             }
         });
         jTableProduto.setName(""); // NOI18N
+        jTableProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableProdutoKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableProduto);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -234,6 +249,20 @@ public class ViewProduto extends javax.swing.JFrame {
 
     private void jBExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirProdutoActionPerformed
         // TODO add your handling code here:
+        if(jTableProduto.getSelectedRow() != 1) {
+            Produto prod = new Produto();
+            ProdutoDAO pdao = new ProdutoDAO();
+        
+            prod.setNome(jTNomeProduto.getText());
+            prod.setQtdProduto(Integer.parseInt(jTqtdProduto.getText()));
+            prod.setId((int)jTableProduto.getValueAt(jTableProduto.getSelectedRow(),0));
+            pdao.update(prod);
+        
+            jTNomeProduto.setText("");
+            jTqtdProduto.setText("");
+            readJTable();
+        }
+      
         
     }//GEN-LAST:event_jBExcluirProdutoActionPerformed
 
@@ -254,6 +283,37 @@ public class ViewProduto extends javax.swing.JFrame {
         jTqtdProduto.setText("");
         readJTable();
     }//GEN-LAST:event_jBCadastrarProdutoActionPerformed
+
+    private void jBAtualizarProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBAtualizarProdutoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAtualizarProdutoKeyReleased
+
+    private void jTableProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableProdutoKeyReleased
+        // TODO add your handling code here:
+        if(jTableProduto.getSelectedRow() != 1) {
+            jTNomeProduto.setText(jTableProduto.getValueAt(jTableProduto.getSelectedRow(),1).toString());
+            jTqtdProduto.setText(jTableProduto.getValueAt(jTableProduto.getSelectedRow(),2).toString());
+          
+        }
+       
+    }//GEN-LAST:event_jTableProdutoKeyReleased
+
+    private void jBAtualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarProdutoActionPerformed
+        // TODO add your handling code here:
+        if(jTableProduto.getSelectedRow() != 1) {
+            Produto prod = new Produto();
+            ProdutoDAO pdao = new ProdutoDAO();
+        
+            prod.setNome(jTNomeProduto.getText());
+            prod.setQtdProduto(Integer.parseInt(jTqtdProduto.getText()));
+            prod.setId((int)jTableProduto.getValueAt(jTableProduto.getSelectedRow(),0));
+            pdao.update(prod);
+        
+            jTNomeProduto.setText("");
+            jTqtdProduto.setText("");
+            readJTable();
+        }
+    }//GEN-LAST:event_jBAtualizarProdutoActionPerformed
 
     /**
      * @param args the command line arguments

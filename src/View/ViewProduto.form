@@ -147,6 +147,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Atualizar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAtualizarProdutoActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jBAtualizarProdutoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBExcluirProduto">
           <Properties>
@@ -226,6 +230,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTableProdutoKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

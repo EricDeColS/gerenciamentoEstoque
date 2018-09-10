@@ -95,5 +95,27 @@ public class ProdutoDAO {
 		
 		
 	}
+	public boolean delete(Produto p) {
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt = con.prepareStatement("DELETE FROM produto WHERE id=?");
+                        stmt.setInt(1, p.getId());
+                        
+			stmt.executeUpdate();
+                        JOptionPane.showMessageDialog(null, p.getNome()+ "Excluido com sucesso");
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Não foi possível atualizar o Produto"+ e);
+                        JOptionPane.showMessageDialog(null, "Produto "+ p.getNome()+" não pode ser excluido");
+			return false;
+		} finally {
+			ConnectionFactory.closeConnection(con, stmt);
+		}
+		
+		
+		
+	}
 	
 }
